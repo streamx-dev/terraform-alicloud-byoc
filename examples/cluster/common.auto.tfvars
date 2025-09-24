@@ -1,0 +1,1 @@
+kubeconfig_temporary_duration_minutes = 2880
