@@ -2,7 +2,7 @@
 # OSS bucket for Terraform state
 # -----------------------------
 resource "alicloud_oss_bucket" "tf_state" {
-  bucket = var.bucket_name
+  bucket            = var.bucket_name
   resource_group_id = var.bucket_resource_group_id
 }
 

@@ -82,11 +82,11 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
     eviction_hard              = {}
     eviction_soft              = {}
     eviction_soft_grace_period = {}
-    feature_gates              = {
+    feature_gates = {
       RotateKubeletServerCertificate = true
     }
     system_reserved = var.kubelet_configuration_system_reserved
-    kube_reserved = var.kubelet_configuration_kube_reserved
+    kube_reserved   = var.kubelet_configuration_kube_reserved
   }
 }
 

@@ -9,8 +9,8 @@ resource "random_integer" "random_postfix" {
 }
 
 module "terraform_state_backend" {
-  source  = "streamx-dev/byoc/alicloud//modules/state-backend"
-  version = "0.0.2"
+  source                   = "streamx-dev/byoc/alicloud//modules/state-backend"
+  version                  = "0.0.2"
   bucket_name              = "${var.resources_identifier}-tf-state-${random_integer.random_postfix.result}"
   bucket_resource_group_id = alicloud_resource_manager_resource_group.resource_group.id
   tf_backend_file_path     = "${path.module}/../cluster/backend.tf"
@@ -22,7 +22,7 @@ resource "alicloud_ram_user" "user" {
 }
 
 resource "alicloud_ram_access_key" "access_key" {
-  user_name   = alicloud_ram_user.user.name
+  user_name = alicloud_ram_user.user.name
 }
 
 data "alicloud_ram_policy_document" "streamx_byoc" {
