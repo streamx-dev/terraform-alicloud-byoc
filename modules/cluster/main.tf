@@ -71,7 +71,7 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
 }
 
 data "alicloud_cs_cluster_credential" "auth" {
-  cluster_id  = alicloud_cs_managed_kubernetes.k8s.id
-  output_file = local.kubeconfig_path
+  cluster_id                 = alicloud_cs_managed_kubernetes.k8s.id
+  output_file                = local.kubeconfig_path
   temporary_duration_minutes = var.kubeconfig_temporary_duration_minutes
 }

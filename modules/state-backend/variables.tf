@@ -5,6 +5,6 @@ variable "bucket_name" {
 
 variable "tf_backend_file_path" {
   description = "Terraform backend file path"
-  type    = string
-  default = null
+  type        = string
+  default     = null
 }

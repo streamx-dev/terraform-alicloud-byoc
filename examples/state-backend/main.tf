@@ -4,7 +4,7 @@ resource "random_integer" "random_postfix" {
 }
 
 module "terraform_state_backend" {
-  source = "../../modules/state-backend"
-  bucket_name = "streamx-byoc-cluster-${random_integer.random_postfix.result}"
+  source               = "../../modules/state-backend"
+  bucket_name          = "streamx-byoc-cluster-${random_integer.random_postfix.result}"
   tf_backend_file_path = "${path.module}/../cluster/backend.tf"
 }
