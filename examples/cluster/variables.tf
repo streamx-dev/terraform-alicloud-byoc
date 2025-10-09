@@ -1,3 +1,8 @@
+variable "resource_group_id" {
+  description = "Resource group in which cluster is created"
+  type        = string
+}
+
 variable "alicloud_region" {
   description = "ACK cluster region"
   type        = string
@@ -71,7 +76,7 @@ variable "instance_types_memory_size" {
 variable "managed_node_pool_desired_size" {
   description = "Desired number of worker nodes in the managed node pool."
   type        = number
-  default     = 3
+  default     = 2
 }
 
 variable "worker_system_disk_size" {

@@ -7,8 +7,9 @@ data "alicloud_enhanced_nat_available_zones" "enhanced" {}
 
 # If there is not specifying vpc_id, the module will launch a new vpc
 resource "alicloud_vpc" "vpc" {
-  count      = var.vpc_id == "" ? 1 : 0
-  cidr_block = var.network_cidr
+  count             = var.vpc_id == "" ? 1 : 0
+  resource_group_id = var.resource_group_id
+  cidr_block        = var.network_cidr
 }
 
 # According to the vswitch cidr blocks to launch several vswitches
@@ -20,8 +21,9 @@ resource "alicloud_vswitch" "vswitches" {
 }
 
 resource "alicloud_cs_managed_kubernetes" "k8s" {
-  name         = "${var.name}-cluster"
-  cluster_spec = var.cluster_spec
+  resource_group_id = var.resource_group_id
+  name              = var.name
+  cluster_spec      = var.cluster_spec
 
   vswitch_ids     = local.vswitch_ids
   new_nat_gateway = true
@@ -46,7 +48,8 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
 }
 
 resource "alicloud_key_pair" "cluster_key" {
-  key_pair_name = "${var.name}-cluster-key"
+  resource_group_id = var.resource_group_id
+  key_pair_name     = "${var.name}-cluster-key"
 }
 
 data "alicloud_instance_types" "cloud_efficiency" {
@@ -58,7 +61,8 @@ data "alicloud_instance_types" "cloud_efficiency" {
 }
 
 resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
-  node_pool_name       = "${var.name}-managed-pool"
+  resource_group_id    = var.resource_group_id
+  node_pool_name       = var.name
   desired_size         = var.managed_node_pool_desired_size
   cluster_id           = alicloud_cs_managed_kubernetes.k8s.id
   vswitch_ids          = local.vswitch_ids
@@ -68,10 +72,26 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
   key_name             = alicloud_key_pair.cluster_key.key_pair_name
 
   install_cloud_monitor = var.worker_install_cloud_monitor
+
+  # Default empty values (e.g., [] for lists, {} for maps) are used here to prevent Terraform "dirty state" issues.
+  # Without defaults, Terraform detects null vs empty collection changes on each apply,
+  # causing unnecessary updates even if no configuration actually changed.
+  kubelet_configuration {
+    allowed_unsafe_sysctls     = []
+    cluster_dns                = []
+    eviction_hard              = {}
+    eviction_soft              = {}
+    eviction_soft_grace_period = {}
+    feature_gates              = {
+      RotateKubeletServerCertificate = true
+    }
+    system_reserved = var.kubelet_configuration_system_reserved
+    kube_reserved = var.kubelet_configuration_kube_reserved
+  }
 }
 
 data "alicloud_cs_cluster_credential" "auth" {
-  cluster_id  = alicloud_cs_managed_kubernetes.k8s.id
-  output_file = local.kubeconfig_path
+  cluster_id                 = alicloud_cs_managed_kubernetes.k8s.id
+  output_file                = local.kubeconfig_path
   temporary_duration_minutes = var.kubeconfig_temporary_duration_minutes
 }

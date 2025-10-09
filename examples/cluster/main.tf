@@ -3,8 +3,10 @@ locals {
 }
 
 module "cluster" {
-  source = "../../modules/cluster"
+  source  = "streamx-dev/byoc/alicloud//modules/cluster"
+  version = "0.0.2"
 
+  resource_group_id                     = var.resource_group_id
   name                                  = local.cluster_name
   cluster_spec                          = var.cluster_spec
   vpc_id                                = var.vpc_id

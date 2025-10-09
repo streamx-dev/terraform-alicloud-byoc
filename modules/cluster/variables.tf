@@ -1,3 +1,9 @@
+variable "resource_group_id" {
+  description = "Resource group in which cluster is created"
+  default     = null
+  type        = string
+}
+
 variable "name" {
   description = "Logical name of this ACK cluster"
   type        = string
@@ -7,6 +13,23 @@ variable "cluster_spec" {
   description = "ACK cluster spec (ack.standard, ack.pro.small, etc.)"
   default     = "ack.standard"
   type        = string
+}
+
+variable "kubelet_configuration_kube_reserved" {
+  description = "Same as kubeReserved. The set of ResourceName=ResourceQuantity (e.g. cpu=200m,memory=150G) pairs that describe resources reserved for kubernetes system components. Currently, cpu, memory and local storage for root file system are supported"
+  default = {
+    cpu               = "250m"
+    memory            = "512Mi"
+    ephemeral-storage = "1Gi"
+  }
+}
+
+variable "kubelet_configuration_system_reserved" {
+  description = "Same as systemReserved. The set of ResourceName=ResourceQuantity (e.g. cpu=200m,memory=150G) pairs that describe resources reserved for non-kubernetes components. Currently, only cpu and memory are supported."
+  default = {
+    cpu    = "250m"
+    memory = "512Mi"
+  }
 }
 
 # leave it to empty would create a new one
@@ -58,14 +81,14 @@ variable "pod_cidr" {
 
 variable "instance_types_cpu_core_count" {
   description = "Filter the results of instance types to a specific number of cpu cores."
-  type = number
-  default = 4
+  type        = number
+  default     = 4
 }
 
 variable "instance_types_memory_size" {
   description = "Filter the results of instance types to a specific memory size in GB."
-  type = number
-  default = 16
+  type        = number
+  default     = 16
 }
 
 variable "managed_node_pool_desired_size" {
@@ -88,6 +111,6 @@ variable "worker_install_cloud_monitor" {
 
 variable "kubeconfig_temporary_duration_minutes" {
   description = "Automatic expiration time of the returned kubeconfig."
-  type = number
-  default = null
+  type        = number
+  default     = null
 }

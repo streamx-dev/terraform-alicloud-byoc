@@ -3,6 +3,7 @@
 # -----------------------------
 resource "alicloud_oss_bucket" "tf_state" {
   bucket = var.bucket_name
+  resource_group_id = var.bucket_resource_group_id
 }
 
 resource "alicloud_oss_bucket_acl" "tf_state-acl" {
