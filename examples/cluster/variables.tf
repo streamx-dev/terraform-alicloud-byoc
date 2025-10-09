@@ -63,14 +63,14 @@ variable "pod_cidr" {
 
 variable "instance_types_cpu_core_count" {
   description = "Filter the results of instance types to a specific number of cpu cores."
-  type = number
-  default = 4
+  type        = number
+  default     = 4
 }
 
 variable "instance_types_memory_size" {
   description = "Filter the results of instance types to a specific memory size in GB."
-  type = number
-  default = 16
+  type        = number
+  default     = 16
 }
 
 variable "managed_node_pool_desired_size" {
@@ -93,6 +93,6 @@ variable "worker_install_cloud_monitor" {
 
 variable "kubeconfig_temporary_duration_minutes" {
   description = "Automatic expiration time of the returned kubeconfig."
-  type = number
-  default = null
+  type        = number
+  default     = null
 }
