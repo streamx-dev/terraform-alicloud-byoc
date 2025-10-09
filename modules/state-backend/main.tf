@@ -20,7 +20,7 @@ data "alicloud_regions" "available" {
 resource "local_file" "tf_backend_file" {
   count    = var.tf_backend_file_path == null ? 0 : 1
   filename = var.tf_backend_file_path
-  content = templatefile("${path.module}/config/backend_template.tftpl.tf", {
+  content = templatefile("${path.module}/config/backend_template.tftpl", {
     bucket   = alicloud_oss_bucket.tf_state.bucket
     region   = data.alicloud_regions.available.regions.0.id
     endpoint = alicloud_oss_bucket.tf_state.extranet_endpoint
