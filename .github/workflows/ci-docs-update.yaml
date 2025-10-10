@@ -50,8 +50,5 @@ jobs:
       - name: Update ${{ matrix.dir }} docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
-          find-dir: ${{ matrix.dir }}
-          config-file: ".terraform-docs.yaml"
-          output-method: ""
-          template: ""
-          git-push: "true"
+          working-dir: ${{ matrix.dir }}
+          git-push: true
