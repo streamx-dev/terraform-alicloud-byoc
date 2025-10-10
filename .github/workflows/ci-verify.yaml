@@ -33,12 +33,25 @@ jobs:
       - name: Terraform fmt
         run: terraform fmt -recursive -write=false -check -diff .
 
+  find-modules:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: set-matrix
+        run: |
+          dirs=$(find . -type f -name "*.tf" -exec dirname {} \; | sort -u | jq -R . | jq -s .)
+          echo "matrix=$dirs" >> $GITHUB_OUTPUT
+
   validate:
     name: "validate"
     runs-on: ubuntu-latest
     strategy:
       matrix:
         terraform_version: [1.6.x, 1.10.x]
+        dir: ${{ fromJson(needs.find-modules.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,8 +61,18 @@ jobs:
         with:
           terraform_version: ${{ matrix.terraform_version }}
 
-      - name: Validate modules
-        run: for module in modules/*/; do cd "${GITHUB_WORKSPACE}/${module}" && terraform init -backend=false && terraform validate -no-color ; done
+      - name: Validate ${{ matrix.dir }} with Terraform version ${{ matrix.terraform_version }}
+        run: cd "${{ matrix.dir }}" && terraform init -backend=false && terraform validate -no-color ; done
 
-      - name: Validate examples
-        run: for module in examples/*/; do cd "${GITHUB_WORKSPACE}/${module}" && terraform init -backend=false && terraform validate -no-color ; done
+  docs:
+    name: "docs validation"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dir: ${{ fromJson(needs.find-modules.outputs.matrix) }}
+    steps:
+      - name: Validate ${{ matrix.dir }} docs
+        uses: terraform-docs/gh-actions@v1.4.1
+        with:
+          working-dir: ${{ matrix.dir }}
+          fail-on-diff: true
