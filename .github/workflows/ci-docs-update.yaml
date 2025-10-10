@@ -13,25 +13,11 @@
 # limitations under the License.
 #
 
-name: "CI: Terraform verify"
+name: "CI: Terraform docs update"
 on:
   - pull_request
 
 jobs:
-  fmt:
-    name: "fmt"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.x
-
-      - name: Terraform fmt
-        run: terraform fmt -recursive -write=false -check -diff .
 
   find-modules:
     runs-on: ubuntu-latest
@@ -45,22 +31,22 @@ jobs:
           dirs=$(find . -type f -name "*.tf" -exec dirname {} \; | sort -u | jq -R . | jq -s -c .)
           echo "matrix=$dirs" >> $GITHUB_OUTPUT
 
-  validate:
-    name: "validate"
+  docs:
+    name: "docs update"
     runs-on: ubuntu-latest
     needs: find-modules
     strategy:
       matrix:
-        terraform_version: [1.6.x, 1.10.x]
         dir: ${{ fromJson(needs.find-modules.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Terraform ${{ matrix.terraform_version }}
-        uses: hashicorp/setup-terraform@v3
+      - name: Update ${{ matrix.dir }} docs
+        uses: terraform-docs/gh-actions@v1.4.1
         with:
-          terraform_version: ${{ matrix.terraform_version }}
-
-      - name: Validate ${{ matrix.dir }} with Terraform version ${{ matrix.terraform_version }}
-        run: cd "${{ matrix.dir }}" && terraform init -backend=false && terraform validate -no-color
+          find-dir: ${{ matrix.dir }}
+          config-file: ".terraform-docs.yaml"
+          output-method: ""
+          template: ""
+          git-push: "true"
