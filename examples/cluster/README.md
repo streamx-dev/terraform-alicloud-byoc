@@ -36,7 +36,7 @@ No resources.
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | Resource group in which cluster is created | `string` | n/a | yes |
 | <a name="input_service_cidr"></a> [service\_cidr](#input\_service\_cidr) | The kubernetes service cidr block. It cannot be equals to vpc's or vswitch's or pod's and cannot be in them. | `string` | `"192.168.0.0/16"` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | Existing vpc id used to create several vswitches and other resources. | `string` | `""` | no |
-| <a name="input_vswitch_cidrs"></a> [vswitch\_cidrs](#input\_vswitch\_cidrs) | List of cidr blocks used to create several new vswitches when 'vswitch\_ids' is not specified. | `list(string)` | <pre>[<br>  "10.1.0.0/16",<br>  "10.2.0.0/16"<br>]</pre> | no |
+| <a name="input_vswitch_cidrs"></a> [vswitch\_cidrs](#input\_vswitch\_cidrs) | List of cidr blocks used to create several new vswitches when 'vswitch\_ids' is not specified. | `list(string)` | <pre>[<br/>  "10.1.0.0/16",<br/>  "10.2.0.0/16"<br/>]</pre> | no |
 | <a name="input_vswitch_ids"></a> [vswitch\_ids](#input\_vswitch\_ids) | List of existing vswitch id. | `list(string)` | `[]` | no |
 | <a name="input_worker_install_cloud_monitor"></a> [worker\_install\_cloud\_monitor](#input\_worker\_install\_cloud\_monitor) | Whether to install CloudMonitor agent on worker nodes. | `bool` | `false` | no |
 | <a name="input_worker_system_disk_size"></a> [worker\_system\_disk\_size](#input\_worker\_system\_disk\_size) | System disk size (in GB) for each worker node. | `number` | `40` | no |
