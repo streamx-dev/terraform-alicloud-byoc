@@ -80,5 +80,5 @@ jobs:
         uses: terraform-docs/gh-actions@v1.4.1
         with:
           working-dir: ${{ matrix.dir }}
-          config-file: "${GITHUB_WORKSPACE}/.terraform-docs.yml"
+          config-file: "/${GITHUB_WORKSPACE}/.terraform-docs.yml"
           fail-on-diff: true
