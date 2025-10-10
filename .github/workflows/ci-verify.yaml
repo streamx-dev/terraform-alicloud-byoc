@@ -63,7 +63,7 @@ jobs:
           terraform_version: ${{ matrix.terraform_version }}
 
       - name: Validate ${{ matrix.dir }} with Terraform version ${{ matrix.terraform_version }}
-        run: cd "${{ matrix.dir }}" && terraform init -backend=false && terraform validate -no-color ; done
+        run: cd "${{ matrix.dir }}" && terraform init -backend=false && terraform validate -no-color
 
   docs:
     name: "docs validation"
