@@ -73,20 +73,11 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
 
   install_cloud_monitor = var.worker_install_cloud_monitor
 
-  # Default empty values (e.g., [] for lists, {} for maps) are used here to prevent Terraform "dirty state" issues.
-  # Without defaults, Terraform detects null vs empty collection changes on each apply,
+  # kubelet_configuration changes are ignored to prevent Terraform "dirty state" issues.
+  # Without kubelet_configuration changes ignore, Terraform detects null vs empty collection changes on each apply,
   # causing unnecessary updates even if no configuration actually changed.
-  kubelet_configuration {
-    allowed_unsafe_sysctls     = []
-    cluster_dns                = []
-    eviction_hard              = {}
-    eviction_soft              = {}
-    eviction_soft_grace_period = {}
-    feature_gates = {
-      RotateKubeletServerCertificate = true
-    }
-    system_reserved = var.kubelet_configuration_system_reserved
-    kube_reserved   = var.kubelet_configuration_kube_reserved
+  lifecycle {
+    ignore_changes = [kubelet_configuration]
   }
 }
 

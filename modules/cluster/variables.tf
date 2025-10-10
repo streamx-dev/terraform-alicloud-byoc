@@ -15,23 +15,6 @@ variable "cluster_spec" {
   type        = string
 }
 
-variable "kubelet_configuration_kube_reserved" {
-  description = "Same as kubeReserved. The set of ResourceName=ResourceQuantity (e.g. cpu=200m,memory=150G) pairs that describe resources reserved for kubernetes system components. Currently, cpu, memory and local storage for root file system are supported"
-  default = {
-    cpu               = "250m"
-    memory            = "512Mi"
-    ephemeral-storage = "1Gi"
-  }
-}
-
-variable "kubelet_configuration_system_reserved" {
-  description = "Same as systemReserved. The set of ResourceName=ResourceQuantity (e.g. cpu=200m,memory=150G) pairs that describe resources reserved for non-kubernetes components. Currently, only cpu and memory are supported."
-  default = {
-    cpu    = "250m"
-    memory = "512Mi"
-  }
-}
-
 # leave it to empty would create a new one
 variable "vpc_id" {
   description = "Existing vpc id used to create several vswitches and other resources."
