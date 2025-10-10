@@ -79,6 +79,6 @@ jobs:
       - name: Validate ${{ matrix.dir }} docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
-          working-dir: ${{ matrix.dir }}
-          config-file: "/${GITHUB_WORKSPACE}/.terraform-docs.yml"
+          find-dir: ${{ matrix.dir }}
+          config-file: ".terraform-docs.yml"
           fail-on-diff: true
