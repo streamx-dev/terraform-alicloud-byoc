@@ -1,0 +1,11 @@
+.env
+
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+*kubeconfig.yaml
+/.idea/*
+
+access_secret.txt

@@ -1,1 +1,0 @@
-# StreamX Cloud bring your own cloud Terraform script for K8s clusters setup
