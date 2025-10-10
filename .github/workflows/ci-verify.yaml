@@ -76,7 +76,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Validate ${{ matrix.dir }} docs
+#      - name: Validate ${{ matrix.dir }} docs
+      - name: Validate docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
           find-dir: "./"
