@@ -1,7 +1,7 @@
 output "test" {
-  value = "test"qq
+  value = "test"
 }
 
 output "test1" {
-  value = "test"qq
+  value = "test"
 }
