@@ -42,7 +42,7 @@ jobs:
 
       - id: set-matrix
         run: |
-          dirs=$(find . -type f -name "*.tf" -exec dirname {} \; | sort -u | jq -R . | jq -s .)
+          dirs=$(find . -type f -name "*.tf" -exec dirname {} \; | sort -u | jq -R . | jq -s -c .)
           echo "matrix=$dirs" >> $GITHUB_OUTPUT
 
   validate:
