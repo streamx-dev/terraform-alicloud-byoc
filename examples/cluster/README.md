@@ -43,5 +43,7 @@ No resources.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_test"></a> [test](#output\_test) | n/a |
 <!-- END_TF_DOCS -->
