@@ -3,8 +3,9 @@ locals {
 }
 
 module "cluster" {
-  source  = "streamx-dev/byoc/alicloud//modules/cluster"
-  version = "0.0.2"
+#  source  = "streamx-dev/byoc/alicloud//modules/cluster"
+#  version = "0.0.2"
+  source = "../../modules/cluster"
 
   resource_group_id                     = var.resource_group_id
   name                                  = local.cluster_name
