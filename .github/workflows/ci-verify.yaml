@@ -73,6 +73,9 @@ jobs:
       matrix:
         dir: ${{ fromJson(needs.find-modules.outputs.matrix) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Validate ${{ matrix.dir }} docs
         uses: terraform-docs/gh-actions@v1.4.1
         with:
