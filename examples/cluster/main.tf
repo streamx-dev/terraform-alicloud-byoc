@@ -10,6 +10,7 @@ module "cluster" {
   resource_group_id                     = var.resource_group_id
   name                                  = local.cluster_name
   cluster_spec                          = var.cluster_spec
+  kubernetes_version                    = var.kubernetes_version
   vpc_id                                = var.vpc_id
   network_cidr                          = var.network_cidr
   vswitch_ids                           = var.vswitch_ids

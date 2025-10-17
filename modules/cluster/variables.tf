@@ -15,6 +15,12 @@ variable "cluster_spec" {
   type        = string
 }
 
+variable "kubernetes_version" {
+  description = "Kubernetes version"
+  default     = "1.32.7-aliyun.1"
+  type        = string
+}
+
 # leave it to empty would create a new one
 variable "vpc_id" {
   description = "Existing vpc id used to create several vswitches and other resources."

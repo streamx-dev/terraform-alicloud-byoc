@@ -24,6 +24,7 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
   resource_group_id = var.resource_group_id
   name              = var.name
   cluster_spec      = var.cluster_spec
+  version           = var.kubernetes_version
 
   vswitch_ids     = local.vswitch_ids
   new_nat_gateway = true
