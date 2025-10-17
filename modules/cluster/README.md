@@ -42,7 +42,7 @@ No modules.
 | <a name="input_maintenance_window_duration"></a> [maintenance\_window\_duration](#input\_maintenance\_window\_duration) | Duration of the maintenance window | `string` | `"3h"` | no |
 | <a name="input_maintenance_window_enable"></a> [maintenance\_window\_enable](#input\_maintenance\_window\_enable) | Enable or disable maintenance window | `bool` | `true` | no |
 | <a name="input_maintenance_window_time"></a> [maintenance\_window\_time](#input\_maintenance\_window\_time) | Maintenance start time in RFC3339 format | `string` | `"2025-07-07T02:00:00+08:00"` | no |
-| <a name="input_maintenance_window_weekly_period"></a> [maintenance\_window\_weekly\_period](#input\_maintenance\_window\_weekly\_period) | Weekly period for maintenance (comma-separated days) | `list(string)` | <pre>[<br/>  "Monday",<br/>  "Tuesday",<br/>  "Wednesday",<br/>  "Thursday",<br/>  "Friday"<br/>]</pre> | no |
+| <a name="input_maintenance_window_weekly_period"></a> [maintenance\_window\_weekly\_period](#input\_maintenance\_window\_weekly\_period) | Maintenance cycle, you can set the values from Monday to Sunday, separated by commas when the values are multiple. | `string` | `"Monday,Tuesday,Wednesday,Thursday,Friday"` | no |
 | <a name="input_managed_node_pool_desired_size"></a> [managed\_node\_pool\_desired\_size](#input\_managed\_node\_pool\_desired\_size) | Desired number of worker nodes in the managed node pool. | `number` | `3` | no |
 | <a name="input_name"></a> [name](#input\_name) | Logical name of this ACK cluster | `string` | n/a | yes |
 | <a name="input_network_cidr"></a> [network\_cidr](#input\_network\_cidr) | The cidr block used to launch a new vpc when 'vpc\_id' is not specified. | `string` | `"10.0.0.0/8"` | no |
