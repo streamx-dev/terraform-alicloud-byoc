@@ -40,10 +40,17 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
     name = "csi-provisioner"
   }
 
+  maintenance_window {
+    duration         = var.maintenance_window_duration
+    weekly_period    = var.maintenance_window_weekly_period
+    enable           = var.maintenance_window_enable
+    maintenance_time = var.maintenance_window_time
+  }
+
   operation_policy {
     cluster_auto_upgrade {
-      enabled = true
-      channel = "stable"
+      channel = var.cluster_auto_upgrade_channel
+      enabled = var.cluster_auto_upgrade_enabled
     }
   }
 }

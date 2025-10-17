@@ -11,6 +11,12 @@ module "cluster" {
   name                                  = local.cluster_name
   cluster_spec                          = var.cluster_spec
   kubernetes_version                    = var.kubernetes_version
+  maintenance_window_duration           = var.maintenance_window_duration
+  maintenance_window_weekly_period      = var.maintenance_window_weekly_period
+  maintenance_window_enable             = var.maintenance_window_enable
+  maintenance_window_time               = var.maintenance_window_time
+  cluster_auto_upgrade_channel          = var.cluster_auto_upgrade_channel
+  cluster_auto_upgrade_enabled          = var.cluster_auto_upgrade_enabled
   vpc_id                                = var.vpc_id
   network_cidr                          = var.network_cidr
   vswitch_ids                           = var.vswitch_ids
