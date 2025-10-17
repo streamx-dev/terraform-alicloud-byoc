@@ -27,9 +27,9 @@ variable "maintenance_window_duration" {
 }
 
 variable "maintenance_window_weekly_period" {
-  description = "Weekly period for maintenance (comma-separated days)"
-  type        = list(string)
-  default     = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  description = "Maintenance cycle, you can set the values from Monday to Sunday, separated by commas when the values are multiple."
+  type        = string
+  default     = "Monday,Tuesday,Wednesday,Thursday,Friday"
 }
 
 variable "maintenance_window_enable" {
