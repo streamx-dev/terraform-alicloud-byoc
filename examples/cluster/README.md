@@ -28,6 +28,7 @@ No resources.
 | <a name="input_instance_types_cpu_core_count"></a> [instance\_types\_cpu\_core\_count](#input\_instance\_types\_cpu\_core\_count) | Filter the results of instance types to a specific number of cpu cores. | `number` | `4` | no |
 | <a name="input_instance_types_memory_size"></a> [instance\_types\_memory\_size](#input\_instance\_types\_memory\_size) | Filter the results of instance types to a specific memory size in GB. | `number` | `16` | no |
 | <a name="input_kubeconfig_temporary_duration_minutes"></a> [kubeconfig\_temporary\_duration\_minutes](#input\_kubeconfig\_temporary\_duration\_minutes) | Automatic expiration time of the returned kubeconfig. | `number` | `null` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version | `string` | `"1.32.7-aliyun.1"` | no |
 | <a name="input_managed_node_pool_desired_size"></a> [managed\_node\_pool\_desired\_size](#input\_managed\_node\_pool\_desired\_size) | Desired number of worker nodes in the managed node pool. | `number` | `2` | no |
 | <a name="input_network_cidr"></a> [network\_cidr](#input\_network\_cidr) | The cidr block used to launch a new vpc when 'vpc\_id' is not specified. | `string` | `"10.0.0.0/8"` | no |
 | <a name="input_node_cidr_mask"></a> [node\_cidr\_mask](#input\_node\_cidr\_mask) | The node cidr block to specific how many pods can run on single node. | `number` | `24` | no |
