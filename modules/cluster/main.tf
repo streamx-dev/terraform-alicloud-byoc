@@ -64,6 +64,7 @@ data "alicloud_instance_types" "cloud_efficiency" {
   availability_zone    = data.alicloud_enhanced_nat_available_zones.enhanced.zones.0.zone_id
   cpu_core_count       = var.instance_types_cpu_core_count
   memory_size          = var.instance_types_memory_size
+  instance_type_family = var.instance_types_family
   kubernetes_node_role = "Worker"
   system_disk_category = "cloud_efficiency"
 }
