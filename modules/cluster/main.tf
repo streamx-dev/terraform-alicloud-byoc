@@ -79,6 +79,7 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
   system_disk_category = "cloud_efficiency"
   system_disk_size     = var.worker_system_disk_size
   key_name             = alicloud_key_pair.cluster_key.key_pair_name
+  multi_az_policy      = "BALANCE"
 
   install_cloud_monitor = var.worker_install_cloud_monitor
 
