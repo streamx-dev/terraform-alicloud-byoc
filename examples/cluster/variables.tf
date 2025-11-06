@@ -115,6 +115,12 @@ variable "instance_types_memory_size" {
   default     = 16
 }
 
+variable "instance_types_family" {
+  description = "Filter the results of instance types to a specific instance type family."
+  type        = string
+  default     = "ecs.g6"
+}
+
 variable "managed_node_pool_desired_size" {
   description = "Desired number of worker nodes in the managed node pool."
   type        = number

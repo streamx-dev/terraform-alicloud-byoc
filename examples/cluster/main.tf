@@ -27,6 +27,7 @@ module "cluster" {
   pod_cidr                              = var.pod_cidr
   instance_types_cpu_core_count         = var.instance_types_cpu_core_count
   instance_types_memory_size            = var.instance_types_memory_size
+  instance_types_family                 = var.instance_types_family
   managed_node_pool_desired_size        = var.managed_node_pool_desired_size
   worker_system_disk_size               = var.worker_system_disk_size
   worker_install_cloud_monitor          = var.worker_install_cloud_monitor
