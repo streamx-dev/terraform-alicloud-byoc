@@ -24,6 +24,7 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
   resource_group_id = var.resource_group_id
   name              = var.name
   cluster_spec      = var.cluster_spec
+  version           = var.kubernetes_version
 
   vswitch_ids     = local.vswitch_ids
   new_nat_gateway = true
@@ -39,10 +40,17 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
     name = "csi-provisioner"
   }
 
+  maintenance_window {
+    duration         = var.maintenance_window_duration
+    weekly_period    = var.maintenance_window_weekly_period
+    enable           = var.maintenance_window_enable
+    maintenance_time = var.maintenance_window_time
+  }
+
   operation_policy {
     cluster_auto_upgrade {
-      enabled = true
-      channel = "stable"
+      channel = var.cluster_auto_upgrade_channel
+      enabled = var.cluster_auto_upgrade_enabled
     }
   }
 }
@@ -56,6 +64,7 @@ data "alicloud_instance_types" "cloud_efficiency" {
   availability_zone    = data.alicloud_enhanced_nat_available_zones.enhanced.zones.0.zone_id
   cpu_core_count       = var.instance_types_cpu_core_count
   memory_size          = var.instance_types_memory_size
+  instance_type_family = var.instance_types_family
   kubernetes_node_role = "Worker"
   system_disk_category = "cloud_efficiency"
 }
@@ -70,6 +79,7 @@ resource "alicloud_cs_kubernetes_node_pool" "managed_node_pool" {
   system_disk_category = "cloud_efficiency"
   system_disk_size     = var.worker_system_disk_size
   key_name             = alicloud_key_pair.cluster_key.key_pair_name
+  multi_az_policy      = "BALANCE"
 
   install_cloud_monitor = var.worker_install_cloud_monitor
 

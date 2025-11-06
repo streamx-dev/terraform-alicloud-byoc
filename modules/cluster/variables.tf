@@ -15,6 +15,48 @@ variable "cluster_spec" {
   type        = string
 }
 
+variable "kubernetes_version" {
+  description = "Kubernetes version"
+  default     = "1.32.7-aliyun.1"
+  type        = string
+}
+
+variable "maintenance_window_duration" {
+  description = "Duration of the maintenance window"
+  type        = string
+  default     = "3h"
+}
+
+variable "maintenance_window_weekly_period" {
+  description = "Maintenance cycle, you can set the values from Monday to Sunday, separated by commas when the values are multiple."
+  type        = string
+  default     = "Monday,Tuesday,Wednesday,Thursday,Friday"
+}
+
+variable "maintenance_window_enable" {
+  description = "Enable or disable maintenance window"
+  type        = bool
+  default     = true
+}
+
+variable "maintenance_window_time" {
+  description = "Maintenance start time in RFC3339 format"
+  type        = string
+  default     = "2025-07-07T02:00:00+08:00"
+}
+
+variable "cluster_auto_upgrade_channel" {
+  description = "Auto upgrade channel for the cluster"
+  type        = string
+  default     = "patch"
+}
+
+variable "cluster_auto_upgrade_enabled" {
+  description = "Enable or disable cluster auto upgrade"
+  type        = bool
+  default     = true
+}
+
 # leave it to empty would create a new one
 variable "vpc_id" {
   description = "Existing vpc id used to create several vswitches and other resources."
@@ -72,6 +114,12 @@ variable "instance_types_memory_size" {
   description = "Filter the results of instance types to a specific memory size in GB."
   type        = number
   default     = 16
+}
+
+variable "instance_types_family" {
+  description = "Filter the results of instance types to a specific instance type family."
+  type        = string
+  default     = "ecs.g6"
 }
 
 variable "managed_node_pool_desired_size" {

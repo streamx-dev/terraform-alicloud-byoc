@@ -24,10 +24,18 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alicloud_region"></a> [alicloud\_region](#input\_alicloud\_region) | ACK cluster region | `string` | n/a | yes |
+| <a name="input_cluster_auto_upgrade_channel"></a> [cluster\_auto\_upgrade\_channel](#input\_cluster\_auto\_upgrade\_channel) | Auto upgrade channel for the cluster | `string` | `"patch"` | no |
+| <a name="input_cluster_auto_upgrade_enabled"></a> [cluster\_auto\_upgrade\_enabled](#input\_cluster\_auto\_upgrade\_enabled) | Enable or disable cluster auto upgrade | `bool` | `true` | no |
 | <a name="input_cluster_spec"></a> [cluster\_spec](#input\_cluster\_spec) | ACK cluster spec (ack.standard, ack.pro.small, etc.) | `string` | `"ack.standard"` | no |
 | <a name="input_instance_types_cpu_core_count"></a> [instance\_types\_cpu\_core\_count](#input\_instance\_types\_cpu\_core\_count) | Filter the results of instance types to a specific number of cpu cores. | `number` | `4` | no |
+| <a name="input_instance_types_family"></a> [instance\_types\_family](#input\_instance\_types\_family) | Filter the results of instance types to a specific instance type family. | `string` | `"ecs.g6"` | no |
 | <a name="input_instance_types_memory_size"></a> [instance\_types\_memory\_size](#input\_instance\_types\_memory\_size) | Filter the results of instance types to a specific memory size in GB. | `number` | `16` | no |
 | <a name="input_kubeconfig_temporary_duration_minutes"></a> [kubeconfig\_temporary\_duration\_minutes](#input\_kubeconfig\_temporary\_duration\_minutes) | Automatic expiration time of the returned kubeconfig. | `number` | `null` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version | `string` | `"1.32.7-aliyun.1"` | no |
+| <a name="input_maintenance_window_duration"></a> [maintenance\_window\_duration](#input\_maintenance\_window\_duration) | Duration of the maintenance window | `string` | `"3h"` | no |
+| <a name="input_maintenance_window_enable"></a> [maintenance\_window\_enable](#input\_maintenance\_window\_enable) | Enable or disable maintenance window | `bool` | `true` | no |
+| <a name="input_maintenance_window_time"></a> [maintenance\_window\_time](#input\_maintenance\_window\_time) | Maintenance start time in RFC3339 format | `string` | `"2025-07-07T02:00:00+08:00"` | no |
+| <a name="input_maintenance_window_weekly_period"></a> [maintenance\_window\_weekly\_period](#input\_maintenance\_window\_weekly\_period) | Maintenance cycle, you can set the values from Monday to Sunday, separated by commas when the values are multiple. | `string` | `"Monday,Tuesday,Wednesday,Thursday,Friday"` | no |
 | <a name="input_managed_node_pool_desired_size"></a> [managed\_node\_pool\_desired\_size](#input\_managed\_node\_pool\_desired\_size) | Desired number of worker nodes in the managed node pool. | `number` | `2` | no |
 | <a name="input_network_cidr"></a> [network\_cidr](#input\_network\_cidr) | The cidr block used to launch a new vpc when 'vpc\_id' is not specified. | `string` | `"10.0.0.0/8"` | no |
 | <a name="input_node_cidr_mask"></a> [node\_cidr\_mask](#input\_node\_cidr\_mask) | The node cidr block to specific how many pods can run on single node. | `number` | `24` | no |
