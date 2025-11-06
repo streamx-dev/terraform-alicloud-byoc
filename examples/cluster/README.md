@@ -28,6 +28,7 @@ No resources.
 | <a name="input_cluster_auto_upgrade_enabled"></a> [cluster\_auto\_upgrade\_enabled](#input\_cluster\_auto\_upgrade\_enabled) | Enable or disable cluster auto upgrade | `bool` | `true` | no |
 | <a name="input_cluster_spec"></a> [cluster\_spec](#input\_cluster\_spec) | ACK cluster spec (ack.standard, ack.pro.small, etc.) | `string` | `"ack.standard"` | no |
 | <a name="input_instance_types_cpu_core_count"></a> [instance\_types\_cpu\_core\_count](#input\_instance\_types\_cpu\_core\_count) | Filter the results of instance types to a specific number of cpu cores. | `number` | `4` | no |
+| <a name="input_instance_types_family"></a> [instance\_types\_family](#input\_instance\_types\_family) | Filter the results of instance types to a specific instance type family. | `string` | `"ecs.g6"` | no |
 | <a name="input_instance_types_memory_size"></a> [instance\_types\_memory\_size](#input\_instance\_types\_memory\_size) | Filter the results of instance types to a specific memory size in GB. | `number` | `16` | no |
 | <a name="input_kubeconfig_temporary_duration_minutes"></a> [kubeconfig\_temporary\_duration\_minutes](#input\_kubeconfig\_temporary\_duration\_minutes) | Automatic expiration time of the returned kubeconfig. | `number` | `null` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Kubernetes version | `string` | `"1.32.7-aliyun.1"` | no |
